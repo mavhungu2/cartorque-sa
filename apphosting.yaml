@@ -7,29 +7,10 @@ runConfig:
   memoryMiB: 512
   concurrency: 80
 
-# Public env vars (visible to the client bundle) — values come from App Hosting
-# secrets / variables panel. Listed here so the backend knows to expose them.
+# Secret references. Values live in Google Secret Manager
+# (project cartorque-sa). Add NEXT_PUBLIC_FIREBASE_* secrets here once the
+# Web App config is available (currently Phase 2 functionality only).
 env:
-  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    secret: NEXT_PUBLIC_FIREBASE_API_KEY
-    availability: [BUILD, RUNTIME]
-  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    secret: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    availability: [BUILD, RUNTIME]
-  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    secret: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    availability: [BUILD, RUNTIME]
-  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-    secret: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-    availability: [BUILD, RUNTIME]
-  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-    secret: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-    availability: [BUILD, RUNTIME]
-  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    secret: NEXT_PUBLIC_FIREBASE_APP_ID
-    availability: [BUILD, RUNTIME]
-
-  # Server-only — never sent to the browser.
   - variable: FIREBASE_PROJECT_ID
     secret: FIREBASE_PROJECT_ID
     availability: [RUNTIME]
@@ -39,6 +20,6 @@ env:
   - variable: FIREBASE_PRIVATE_KEY
     secret: FIREBASE_PRIVATE_KEY
     availability: [RUNTIME]
-  - variable: ADMIN_PASSWORD
-    secret: ADMIN_PASSWORD
+  - variable: FIREBASE_STORAGE_BUCKET
+    secret: FIREBASE_STORAGE_BUCKET
     availability: [RUNTIME]
