@@ -35,7 +35,10 @@ export function getAdminApp(): App | null {
   if (getApps().length) return getApp();
   const credential = loadCredentials();
   if (!credential) return null;
-  return initializeApp({ credential });
+  const storageBucket =
+    process.env.FIREBASE_STORAGE_BUCKET ??
+    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
+  return initializeApp({ credential, storageBucket });
 }
 
 export function getAdminDb(): Firestore | null {

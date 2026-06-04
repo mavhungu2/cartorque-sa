@@ -6,6 +6,7 @@ import { listPendingListings } from "@/lib/listings";
 import { approveListingAction, rejectListingAction, adminLogoutAction } from "../actions";
 
 export const metadata = { title: "Moderation queue — Car Torque SA" };
+export const dynamic = "force-dynamic";
 
 const FORMAT_PRICE = new Intl.NumberFormat("en-ZA", {
   style: "currency",

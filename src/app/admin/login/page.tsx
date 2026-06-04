@@ -4,6 +4,7 @@ import { adminLoginAction } from "../actions";
 import { adminPasswordRequired, isAdminAuthorised } from "@/lib/admin-auth";
 
 export const metadata = { title: "Admin login — Car Torque SA" };
+export const dynamic = "force-dynamic";
 
 export default async function AdminLoginPage({
   searchParams,

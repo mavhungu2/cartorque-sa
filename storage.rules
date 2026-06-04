@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Listing photos: anyone (signed in or not) can read; authenticated users can
+    // upload to /listings/* and only the uploader can overwrite or delete.
+    match /listings/{photoId} {
+      allow read: if true;
+      allow create: if request.auth != null
+                    && request.resource.size < 10 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+      allow update, delete: if request.auth != null
+                            && resource.metadata.uploaderId == request.auth.uid;
+    }
+
+    match /{allOther=**} {
+      allow read, write: if false;
+    }
+  }
+}

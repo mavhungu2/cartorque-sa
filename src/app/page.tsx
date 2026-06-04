@@ -4,6 +4,9 @@ import ListingCard from "@/components/ListingCard";
 import { CHANNEL, FEATURED_VIDEOS, CATEGORIES, POSTS } from "@/lib/data";
 import { listLiveListings } from "@/lib/listings";
 
+// Refresh the "Recently listed" section every 60s so newly-approved listings show up.
+export const revalidate = 60;
+
 export default async function Home() {
   const latestPosts = POSTS.slice(0, 3);
   const featuredListings = (await listLiveListings()).slice(0, 3);
