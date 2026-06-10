@@ -5,7 +5,6 @@ import logo from "@/assets/logo.png";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/marketplace", label: "Marketplace" },
-  { href: "/finance", label: "Finance" },
   { href: "/videos", label: "Videos" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },

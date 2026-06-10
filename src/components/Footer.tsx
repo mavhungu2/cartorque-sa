@@ -16,7 +16,6 @@ export default function Footer() {
           <ul className="space-y-2 text-white/80">
             <li><Link href="/videos" className="hover:text-[color:var(--accent)]">Videos</Link></li>
             <li><Link href="/blog" className="hover:text-[color:var(--accent)]">Blog</Link></li>
-            <li><Link href="/merch" className="hover:text-[color:var(--accent)]">Merch</Link></li>
             <li><Link href="/about" className="hover:text-[color:var(--accent)]">About</Link></li>
             <li><Link href="/contact" className="hover:text-[color:var(--accent)]">Contact</Link></li>
           </ul>

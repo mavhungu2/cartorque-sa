@@ -13,6 +13,12 @@ export type Video = { id: string; title: string; category: string; description: 
 // Update by replacing entries below as new uploads land.
 export const VIDEOS: Video[] = [
   {
+    id: "odIuflQGLbg",
+    title: "Kia Tasman 2026 SA Review — First Drive, Off-Road Test & Honest Impressions",
+    category: "Reviews",
+    description: "Kia's first bakkie lands in SA. We take it off-road and give the honest verdict.",
+  },
+  {
     id: "IMUAMdA0PC8",
     title: "Renault Kwid: A Hit or Miss in the World of Compact Cars?",
     category: "Reviews",
