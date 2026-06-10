@@ -2,7 +2,7 @@
 // (collection: finance_applications) and forwarded to registered credit
 // providers by the Car Torque team. Car Torque SA is not a credit provider.
 import "server-only";
-import { adminConfigured, getAdminDb, stripUndefined } from "./firebase/admin";
+import { getAdminDb, stripUndefined, useMockData } from "./firebase/admin";
 
 export type EmploymentStatus = "permanent" | "contract" | "self_employed" | "pensioner" | "other";
 export type ApplicationStatus = "new" | "contacted" | "submitted_to_bank" | "approved" | "declined" | "closed";
@@ -106,7 +106,7 @@ export async function createFinanceApplication(
     updatedAt: now,
   };
 
-  if (!adminConfigured()) {
+  if (useMockData()) {
     const id = `fin-${Date.now()}`;
     MOCK_APPLICATIONS.unshift({ ...doc, id });
     return id;
@@ -119,7 +119,7 @@ export async function createFinanceApplication(
 }
 
 export async function listFinanceApplications(): Promise<FinanceApplication[]> {
-  if (!adminConfigured()) {
+  if (useMockData()) {
     return [...MOCK_APPLICATIONS];
   }
   const db = getAdminDb();
@@ -142,7 +142,7 @@ export async function setApplicationStatus(
   status: ApplicationStatus,
 ): Promise<void> {
   const now = new Date().toISOString();
-  if (!adminConfigured()) {
+  if (useMockData()) {
     const idx = MOCK_APPLICATIONS.findIndex((a) => a.id === id);
     if (idx >= 0)
       MOCK_APPLICATIONS[idx] = { ...MOCK_APPLICATIONS[idx], status, updatedAt: now };

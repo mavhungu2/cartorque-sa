@@ -31,6 +31,16 @@ export function adminConfigured(): boolean {
   return loadCredentials() !== null;
 }
 
+/**
+ * Demo/mock data may only ever appear in local development. In production a
+ * missing/broken Firebase config must surface as empty results (and errors on
+ * writes), never as demo content silently rendered to real users — this bit us
+ * when the build-time prerender ran without build-stage secrets.
+ */
+export function useMockData(): boolean {
+  return !adminConfigured() && process.env.NODE_ENV !== "production";
+}
+
 export function getAdminApp(): App | null {
   if (getApps().length) return getApp();
   const credential = loadCredentials();

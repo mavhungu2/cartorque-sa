@@ -4,7 +4,7 @@
 // Types, mock data, and the in-memory filter live in ./mock-listings.ts so
 // they can also be used by non-server-side scripts (seed, tests).
 import "server-only";
-import { adminConfigured, getAdminDb, stripUndefined } from "./firebase/admin";
+import { getAdminDb, stripUndefined, useMockData } from "./firebase/admin";
 import {
   MOCK_LISTINGS,
   applyListingFilters,
@@ -25,7 +25,7 @@ export {
 } from "./mock-listings";
 
 export async function listLiveListings(filters: ListingFilters = {}): Promise<Listing[]> {
-  if (!adminConfigured()) {
+  if (useMockData()) {
     const live = MOCK_LISTINGS.filter((l) => l.status === "live");
     return applyListingFilters(live, filters).sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -50,7 +50,7 @@ export async function listLiveListings(filters: ListingFilters = {}): Promise<Li
 }
 
 export async function getListing(id: string): Promise<Listing | null> {
-  if (!adminConfigured()) {
+  if (useMockData()) {
     return MOCK_LISTINGS.find((l) => l.id === id) ?? null;
   }
   const db = getAdminDb();
@@ -68,7 +68,7 @@ export async function getListing(id: string): Promise<Listing | null> {
 }
 
 export async function listPendingListings(): Promise<Listing[]> {
-  if (!adminConfigured()) {
+  if (useMockData()) {
     return MOCK_LISTINGS.filter((l) => l.status === "pending_review").sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
@@ -91,7 +91,7 @@ export async function listPendingListings(): Promise<Listing[]> {
 
 export async function setListingStatus(id: string, status: ListingStatus): Promise<void> {
   const now = new Date().toISOString();
-  if (!adminConfigured()) {
+  if (useMockData()) {
     const idx = MOCK_LISTINGS.findIndex((l) => l.id === id);
     if (idx >= 0) MOCK_LISTINGS[idx] = { ...MOCK_LISTINGS[idx], status, updatedAt: now };
     return;
@@ -119,7 +119,7 @@ export async function createPendingListing(input: NewListingInput): Promise<stri
     updatedAt: now,
   };
 
-  if (!adminConfigured()) {
+  if (useMockData()) {
     const id = `demo-${Date.now()}`;
     MOCK_LISTINGS.unshift({ ...doc, id });
     return id;
