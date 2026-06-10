@@ -56,6 +56,7 @@ export type Listing = {
 
 export type ListingFilters = {
   make?: string;
+  model?: string;
   minPrice?: number;
   maxPrice?: number;
   minYear?: number;
@@ -64,6 +65,42 @@ export type ListingFilters = {
   province?: string;
   verifiedOnly?: boolean;
 };
+
+/** Distinct values present in the live inventory — drives the filter UI so
+ *  options always match what's actually for sale. */
+export type ListingFacets = {
+  makes: string[];
+  modelsByMake: Record<string, string[]>;
+  years: number[]; // distinct, descending
+  maxMileage: number;
+  provinces: string[];
+};
+
+export function buildListingFacets(items: Listing[]): ListingFacets {
+  const makes = new Set<string>();
+  const modelsByMake: Record<string, Set<string>> = {};
+  const years = new Set<number>();
+  const provinces = new Set<string>();
+  let maxMileage = 0;
+
+  for (const l of items) {
+    makes.add(l.make);
+    (modelsByMake[l.make] ??= new Set()).add(l.model);
+    years.add(l.year);
+    provinces.add(l.province);
+    if (l.mileageKm > maxMileage) maxMileage = l.mileageKm;
+  }
+
+  return {
+    makes: [...makes].sort(),
+    modelsByMake: Object.fromEntries(
+      Object.entries(modelsByMake).map(([m, set]) => [m, [...set].sort()]),
+    ),
+    years: [...years].sort((a, b) => b - a),
+    maxMileage,
+    provinces: [...provinces].sort(),
+  };
+}
 
 export const PROVINCES = [
   "Gauteng",
@@ -87,6 +124,7 @@ export const MAKES = [
 export function applyListingFilters(items: Listing[], filters: ListingFilters): Listing[] {
   return items.filter((l) => {
     if (filters.make && l.make.toLowerCase() !== filters.make.toLowerCase()) return false;
+    if (filters.model && l.model.toLowerCase() !== filters.model.toLowerCase()) return false;
     if (filters.minPrice !== undefined && l.priceZar < filters.minPrice) return false;
     if (filters.maxPrice !== undefined && l.priceZar > filters.maxPrice) return false;
     if (filters.minYear !== undefined && l.year < filters.minYear) return false;

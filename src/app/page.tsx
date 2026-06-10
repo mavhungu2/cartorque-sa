@@ -2,16 +2,18 @@ import Link from "next/link";
 import VideoCard from "@/components/VideoCard";
 import ListingCard from "@/components/ListingCard";
 import { CHANNEL, FEATURED_VIDEOS, POSTS } from "@/lib/data";
-import { listLiveListings, MAKES, PROVINCES } from "@/lib/listings";
+import { listLiveListings } from "@/lib/listings";
+import { buildListingFacets } from "@/lib/mock-listings";
 
 // Refresh the featured listings every 60s so newly-approved cars show up.
 export const revalidate = 60;
 
 export default async function Home() {
   const allListings = await listLiveListings();
+  const facets = buildListingFacets(allListings);
   const featuredListings = allListings.slice(0, 6);
   const verifiedCount = allListings.filter((l) => l.verified !== "unverified").length;
-  const provinceCount = new Set(allListings.map((l) => l.province)).size;
+  const provinceCount = facets.provinces.length;
   const latestPosts = POSTS.slice(0, 2);
 
   return (
@@ -47,7 +49,7 @@ export default async function Home() {
               className="rounded-md border border-[color:var(--border)] bg-white px-3 py-3 text-sm focus:outline-none focus:border-[color:var(--ink)]"
             >
               <option value="">Any make</option>
-              {MAKES.map((m) => (
+              {facets.makes.map((m) => (
                 <option key={m} value={m}>
                   {m}
                 </option>
@@ -59,7 +61,7 @@ export default async function Home() {
               className="rounded-md border border-[color:var(--border)] bg-white px-3 py-3 text-sm focus:outline-none focus:border-[color:var(--ink)]"
             >
               <option value="">Any province</option>
-              {PROVINCES.map((p) => (
+              {facets.provinces.map((p) => (
                 <option key={p} value={p}>
                   {p}
                 </option>
