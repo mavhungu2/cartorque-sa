@@ -23,3 +23,6 @@ env:
   - variable: FIREBASE_STORAGE_BUCKET
     secret: FIREBASE_STORAGE_BUCKET
     availability: [RUNTIME]
+  - variable: ADMIN_PASSWORD
+    secret: ADMIN_PASSWORD
+    availability: [RUNTIME]
