@@ -1,6 +1,9 @@
 import { submitListingAction } from "./actions";
 import { MAKES, PROVINCES } from "@/lib/listings";
 
+// Bounded CDN staleness — fully-static pages otherwise cache for a year.
+export const revalidate = 300;
+
 export const metadata = {
   title: "Sell my car — Car Torque SA",
   description:

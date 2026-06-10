@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { CHANNEL } from "@/lib/data";
 
+// Bounded CDN staleness — fully-static pages otherwise cache for a year.
+export const revalidate = 300;
+
 export const metadata = {
   title: "About — Car Torque SA",
   description: "About Car Torque SA — the honest South African motoring channel.",

@@ -2,6 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { POSTS } from "@/lib/data";
 
+// Bounded CDN staleness — fully-static pages otherwise cache for a year.
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
 }

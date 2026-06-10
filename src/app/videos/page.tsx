@@ -2,6 +2,9 @@ import Link from "next/link";
 import VideoCard from "@/components/VideoCard";
 import { VIDEOS, CATEGORIES, CHANNEL } from "@/lib/data";
 
+// Bounded CDN staleness — fully-static pages otherwise cache for a year.
+export const revalidate = 300;
+
 export const metadata = {
   title: "Videos — Car Torque SA",
   description: "All the latest reviews, road tests, and motoring news from Car Torque SA.",

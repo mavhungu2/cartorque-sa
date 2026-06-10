@@ -1,5 +1,8 @@
 import { MERCH, CHANNEL } from "@/lib/data";
 
+// Bounded CDN staleness — fully-static pages otherwise cache for a year.
+export const revalidate = 300;
+
 export const metadata = {
   title: "Merch — Car Torque SA",
   description: "Official Car Torque SA merchandise. Wear the torque.",

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { POSTS } from "@/lib/data";
 
+// Bounded CDN staleness — fully-static pages otherwise cache for a year.
+export const revalidate = 300;
+
 export const metadata = {
   title: "Blog — Car Torque SA",
   description: "Written motoring features from Car Torque SA — buying guides, comparisons, and the SA car scene.",
