@@ -36,6 +36,8 @@ export type Listing = {
   color?: string;
 
   priceZar: number;
+  monthlyZar?: number; // estimated monthly instalment (dealer-style "±R/pm")
+  condition?: "new" | "used"; // absent = used (typical private listing)
   negotiable: boolean;
 
   location: string;
@@ -76,7 +78,7 @@ export const PROVINCES = [
 ] as const;
 
 export const MAKES = [
-  "Audi", "BMW", "Chery", "Citroën", "Datsun", "Fiat", "Ford", "Haval",
+  "Audi", "BMW", "Chery", "Citroën", "Datsun", "Fiat", "Ford", "GWM", "Haval",
   "Honda", "Hyundai", "Isuzu", "Jeep", "Kia", "Land Rover", "Mahindra",
   "Mazda", "Mercedes-Benz", "MG", "Mini", "Mitsubishi", "Nissan", "Opel",
   "Peugeot", "Porsche", "Renault", "Suzuki", "Toyota", "Volkswagen", "Volvo",

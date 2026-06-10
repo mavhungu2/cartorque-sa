@@ -33,9 +33,11 @@ export default async function ListingDetailPage({
   const listing = await getListing(id);
   if (!listing) notFound();
 
+  const isNew = listing.condition === "new";
   const specs: Array<[string, string]> = [
+    ["Condition", isNew ? "New" : "Used"],
     ["Year", String(listing.year)],
-    ["Mileage", `${FORMAT_KM.format(listing.mileageKm)} km`],
+    ["Mileage", isNew && listing.mileageKm === 0 ? "New" : `${FORMAT_KM.format(listing.mileageKm)} km`],
     ["Transmission", listing.transmission],
     ["Fuel", listing.fuelType],
     ...(listing.bodyType ? [["Body", listing.bodyType] as [string, string]] : []),
@@ -85,6 +87,11 @@ export default async function ListingDetailPage({
           <div className="text-4xl font-black tracking-tight">
             {FORMAT_PRICE.format(listing.priceZar)}
           </div>
+          {listing.monthlyZar && (
+            <div className="text-sm font-semibold text-[color:var(--muted)] mt-1">
+              ± {FORMAT_PRICE.format(listing.monthlyZar)} per month
+            </div>
+          )}
           <div className="text-xs text-[color:var(--muted)] mt-1">
             {listing.negotiable ? "Negotiable" : "Firm"}
           </div>

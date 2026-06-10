@@ -11,6 +11,7 @@ const FORMAT_KM = new Intl.NumberFormat("en-ZA");
 
 export default function ListingCard({ listing }: { listing: Listing }) {
   const photo = listing.photos[0];
+  const isNew = listing.condition === "new";
   return (
     <Link href={`/marketplace/${listing.id}`} className="card rounded-xl overflow-hidden block group">
       <div className="aspect-[4/3] relative bg-[color:var(--bg-elev)] overflow-hidden">
@@ -27,26 +28,38 @@ export default function ListingCard({ listing }: { listing: Listing }) {
             No photo
           </div>
         )}
-        {listing.verified === "fully_verified" && (
-          <span className="absolute top-3 left-3 chip" style={{ background: "#ffd400" }}>
-            ✓ Reviewed
-          </span>
-        )}
-        {listing.verified === "vin_checked" && (
-          <span className="absolute top-3 left-3 chip">VIN verified</span>
-        )}
+        <div className="absolute top-3 left-3 flex gap-2">
+          {isNew && (
+            <span className="chip" style={{ background: "#0a0a0b", color: "#ffd400" }}>
+              NEW
+            </span>
+          )}
+          {listing.verified === "fully_verified" && (
+            <span className="chip" style={{ background: "#ffd400" }}>
+              ✓ Reviewed
+            </span>
+          )}
+          {listing.verified === "vin_checked" && <span className="chip">VIN verified</span>}
+        </div>
       </div>
       <div className="p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="font-semibold leading-snug">{listing.title}</div>
-          <div className="text-[color:var(--ink)] font-black whitespace-nowrap">
-            {FORMAT_PRICE.format(listing.priceZar)}
+          <div className="text-right">
+            <div className="text-[color:var(--ink)] font-black whitespace-nowrap">
+              {FORMAT_PRICE.format(listing.priceZar)}
+            </div>
+            {listing.monthlyZar && (
+              <div className="text-[11px] text-[color:var(--muted)] font-semibold whitespace-nowrap">
+                ± {FORMAT_PRICE.format(listing.monthlyZar)}/pm
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[color:var(--muted)] font-medium">
           <span>{listing.year}</span>
           <span>•</span>
-          <span>{FORMAT_KM.format(listing.mileageKm)} km</span>
+          <span>{isNew && listing.mileageKm === 0 ? "New" : `${FORMAT_KM.format(listing.mileageKm)} km`}</span>
           <span>•</span>
           <span className="capitalize">{listing.transmission}</span>
           <span>•</span>
