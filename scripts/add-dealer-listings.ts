@@ -41,7 +41,7 @@ const sec = (h: number, m: number, s: number) => h * 3600 + m * 60 + s;
 type DealerCar = Omit<
   Listing,
   "id" | "photos" | "createdAt" | "updatedAt" | "title"
-> & { id: string; batch: Batch };
+> & { id: string; batches: Batch[] };
 
 const COMMON = {
   ownerId: "cartorque-sa",
@@ -72,7 +72,52 @@ const CARS: DealerCar[] = [
     monthlyZar: 14639.99,
     description:
       "Brand-new 2026 Volkswagen Tiguan 1.4 TSI 110kW R-Line Auto. Digital cockpit, R-Line styling inside and out, paddle shifters, full infotainment suite. Estimated instalment ±R14,639.99/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(12, 15, 45), toSec: sec(12, 15, 49) },
+    batches: [
+      { fromSec: sec(12, 15, 45), toSec: sec(12, 15, 49) }, // exterior
+      { fromSec: sec(20, 18, 30), toSec: sec(20, 18, 44) }, // interior (evening shoot)
+    ],
+  },
+  {
+    ...COMMON,
+    id: "vw-golf-gti",
+    make: "Volkswagen",
+    model: "Golf",
+    variant: "GTI 2.0 TSI Auto",
+    year: 2026,
+    mileageKm: 0,
+    condition: "new",
+    transmission: "dct",
+    fuelType: "petrol",
+    bodyType: "Hatchback",
+    color: "White",
+    priceZar: 858000,
+    monthlyZar: 17159.99,
+    location: "Bloemfontein",
+    province: "Free State",
+    description:
+      "Brand-new 2026 Volkswagen Golf GTI Auto. The benchmark hot hatch — 2.0 TSI, DSG, red-caliper brakes, GTI interior. Estimated instalment ±R17,159.99/month (terms and approval apply). Arranged through Car Torque SA.",
+    batches: [{ fromSec: sec(20, 20, 1), toSec: sec(20, 20, 24) }],
+  },
+  {
+    ...COMMON,
+    id: "vw-polo-vivo-14",
+    make: "Volkswagen",
+    model: "Polo Vivo",
+    variant: "Hatch 1.4 Manual",
+    year: 2026,
+    mileageKm: 0,
+    condition: "new",
+    transmission: "manual",
+    fuelType: "petrol",
+    bodyType: "Hatchback",
+    color: "Blue",
+    priceZar: 245500,
+    monthlyZar: 4910,
+    location: "Bloemfontein",
+    province: "Free State",
+    description:
+      "Brand-new 2026 Volkswagen Polo Vivo Hatch 1.4 manual. SA's best-selling entry VW — bulletproof 1.4, low running costs, full dealer warranty. Estimated instalment ±R4,910/month (terms and approval apply). Arranged through Car Torque SA.",
+    batches: [{ fromSec: sec(20, 14, 4), toSec: sec(20, 14, 18) }],
   },
   {
     ...COMMON,
@@ -91,7 +136,7 @@ const CARS: DealerCar[] = [
     monthlyZar: 6709.99,
     description:
       "Brand-new 2026 Volkswagen Polo Hatch 1.0 TSI 70kW manual. SA's favourite hatch with the efficient 1.0 turbo three-cylinder. Estimated instalment ±R6,709.99/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(12, 18, 56), toSec: sec(12, 18, 59) },
+    batches: [{ fromSec: sec(12, 18, 56), toSec: sec(12, 18, 59) }],
   },
   {
     ...COMMON,
@@ -110,7 +155,7 @@ const CARS: DealerCar[] = [
     monthlyZar: 7597.99,
     description:
       "Brand-new 2026 GWM P300 2.0T Single Cab SX manual. Serious workhorse value — 2.0 turbodiesel, load bed with rails, modern cab. Estimated instalment ±R7,597.99/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(12, 18, 20), toSec: sec(12, 18, 25) },
+    batches: [{ fromSec: sec(12, 18, 20), toSec: sec(12, 18, 25) }],
   },
   {
     ...COMMON,
@@ -129,7 +174,7 @@ const CARS: DealerCar[] = [
     monthlyZar: 15197.99,
     description:
       "Brand-new 2026 GWM Tank 300 2.4T Ultra Luxury 4WD Auto. Proper ladder-frame off-roader with a premium cabin — quilted leather, dual screens, full driver assistance. Estimated instalment ±R15,197.99/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(12, 17, 27), toSec: sec(12, 17, 33) },
+    batches: [{ fromSec: sec(12, 17, 27), toSec: sec(12, 17, 33) }],
   },
   {
     ...COMMON,
@@ -148,7 +193,7 @@ const CARS: DealerCar[] = [
     monthlyZar: 14790,
     description:
       "Brand-new 2026 Volkswagen Tiguan 1.4 TSI R-Line DSG 4Motion. All-wheel drive, panoramic roof, R-Line leather sport interior. Estimated instalment ±R14,790/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(12, 28, 27), toSec: sec(12, 28, 31) },
+    batches: [{ fromSec: sec(12, 28, 27), toSec: sec(12, 28, 31) }],
   },
   {
     ...COMMON,
@@ -168,7 +213,7 @@ const CARS: DealerCar[] = [
     negotiable: true,
     description:
       "2025 Suzuki Ertiga 1.5 GL manual with only 7,934 km — effectively new. Seven seats, legendary Suzuki running costs, balance of factory warranty. Estimated instalment ±R6,799.90/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(11, 55, 39), toSec: sec(11, 55, 46) },
+    batches: [{ fromSec: sec(11, 55, 39), toSec: sec(11, 55, 46) }],
   },
   {
     ...COMMON,
@@ -188,7 +233,7 @@ const CARS: DealerCar[] = [
     negotiable: true,
     description:
       "2025 Toyota Rumion 1.5 SX manual, 10,306 km, Toyota Certified. Seven-seat practicality with Toyota's dealer network behind it. Estimated instalment ±R7,199.90/month (terms and approval apply). Arranged through Car Torque SA.",
-    batch: { fromSec: sec(11, 55, 10), toSec: sec(11, 55, 12) },
+    batches: [{ fromSec: sec(11, 55, 10), toSec: sec(11, 55, 12) }],
   },
 ];
 
@@ -199,14 +244,19 @@ function parseTimestamp(filename: string): number | null {
   return sec(Number(m[1]), Number(m[2]), Number(m[3]));
 }
 
-async function photosForBatch(batch: Batch, all: string[]): Promise<string[]> {
+function filesInBatch(batch: Batch, all: string[]): string[] {
   return all
     .filter((f) => {
       const t = parseTimestamp(f);
       return t !== null && t >= batch.fromSec && t <= batch.toSec;
     })
-    .sort()
-    .slice(0, MAX_PHOTOS);
+    .sort();
+}
+
+/** Spread the photo budget across batches (e.g. exterior + interior shoots). */
+function photosForBatches(batches: Batch[], all: string[]): string[] {
+  const perBatch = Math.max(1, Math.ceil(MAX_PHOTOS / batches.length));
+  return batches.flatMap((b) => filesInBatch(b, all).slice(0, perBatch)).slice(0, MAX_PHOTOS);
 }
 
 async function main() {
@@ -216,7 +266,7 @@ async function main() {
   console.log(`Found ${files.length} WhatsApp photos in Downloads.\n`);
 
   for (const car of CARS) {
-    const batchFiles = await photosForBatch(car.batch, files);
+    const batchFiles = photosForBatches(car.batches, files);
     if (batchFiles.length === 0) {
       console.warn(`! ${car.id}: no photos matched batch window — skipping photos`);
     }
@@ -232,14 +282,24 @@ async function main() {
       urls.push(url);
     }
 
+    const ref = db.collection("listings").doc(car.id);
+    const existing = await ref.get();
     const now = new Date().toISOString();
-    const { id, batch: _batch, ...data } = car;
+    const { id, batches: _batches, ...data } = car;
     const title = `${car.year} ${car.make} ${car.model} ${car.variant ?? ""}`.trim();
-    await db
-      .collection("listings")
-      .doc(id)
-      .set({ ...data, title, photos: urls, createdAt: now, updatedAt: now }, { merge: true });
-    console.log(`✓ ${id.padEnd(28)} ${title}  (${urls.length} photos)`);
+    await ref.set(
+      {
+        ...data,
+        title,
+        photos: urls,
+        createdAt: existing.exists ? existing.get("createdAt") : now,
+        updatedAt: now,
+      },
+      { merge: true },
+    );
+    console.log(
+      `${existing.exists ? "↻" : "✓"} ${id.padEnd(28)} ${title}  (${urls.length} photos)`,
+    );
   }
 
   console.log("\nDone.");
