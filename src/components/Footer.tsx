@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import logoDark from "@/assets/logo-dark.png";
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="stripe-divider" aria-hidden />
       <div className="max-w-6xl mx-auto px-5 py-12 grid md:grid-cols-3 gap-10 text-sm">
         <div>
-          <Image src="/logo-dark.png" alt="Car Torque" width={320} height={126} className="h-24 w-auto" />
+          <Image src={logoDark} alt="Car Torque" className="h-24 w-auto" />
           <p className="text-white/70 mt-4 max-w-xs">Honest car reviews and motoring stories from South Africa.</p>
         </div>
         <div>

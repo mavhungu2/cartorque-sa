@@ -4,7 +4,7 @@
 // Types, mock data, and the in-memory filter live in ./mock-listings.ts so
 // they can also be used by non-server-side scripts (seed, tests).
 import "server-only";
-import { adminConfigured, getAdminDb } from "./firebase/admin";
+import { adminConfigured, getAdminDb, stripUndefined } from "./firebase/admin";
 import {
   MOCK_LISTINGS,
   applyListingFilters,
@@ -127,6 +127,6 @@ export async function createPendingListing(input: NewListingInput): Promise<stri
 
   const db = getAdminDb();
   if (!db) throw new Error("Firebase admin not initialised");
-  const ref = await db.collection("listings").add(doc);
+  const ref = await db.collection("listings").add(stripUndefined(doc));
   return ref.id;
 }

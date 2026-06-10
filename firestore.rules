@@ -24,6 +24,12 @@ service cloud.firestore {
       allow delete: if request.auth != null && request.auth.uid == resource.data.ownerId;
     }
 
+    // Finance applications: contain sensitive personal information (POPIA).
+    // No client access at all — server (Admin SDK) only.
+    match /finance_applications/{appId} {
+      allow read, write: if false;
+    }
+
     // Default deny
     match /{document=**} {
       allow read, write: if false;

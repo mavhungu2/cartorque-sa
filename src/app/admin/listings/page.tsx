@@ -32,15 +32,20 @@ export default async function AdminListingsPage() {
               : `${pending.length} listing${pending.length === 1 ? "" : "s"} awaiting review.`}
           </p>
         </div>
-        {passwordSet ? (
-          <form action={adminLogoutAction}>
-            <button type="submit" className="btn-outline text-sm">
-              Sign out
-            </button>
-          </form>
-        ) : (
-          <span className="chip">Open access</span>
-        )}
+        <div className="flex items-center gap-2">
+          <Link href="/admin/finance" className="btn-outline text-sm whitespace-nowrap">
+            Finance queue
+          </Link>
+          {passwordSet ? (
+            <form action={adminLogoutAction}>
+              <button type="submit" className="btn-outline text-sm">
+                Sign out
+              </button>
+            </form>
+          ) : (
+            <span className="chip">Open access</span>
+          )}
+        </div>
       </div>
 
       {!passwordSet && (

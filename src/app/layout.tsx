@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: "Car Torque SA — Honest South African Car Marketplace",
   description:
     "Buy & sell cars in South Africa. Every listing screened by the Car Torque team — and selected cars get a full video review on the channel.",
-  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

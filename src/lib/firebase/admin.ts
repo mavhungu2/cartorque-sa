@@ -45,3 +45,15 @@ export function getAdminDb(): Firestore | null {
   const app = getAdminApp();
   return app ? getFirestore(app) : null;
 }
+
+/**
+ * Firestore rejects `undefined` values outright. Optional form fields arrive
+ * as undefined, so strip them before any write. (We avoid the
+ * `ignoreUndefinedProperties` setting because settings() may only be called
+ * once per instance — fragile with Next.js dev hot-reload.)
+ */
+export function stripUndefined<T extends Record<string, unknown>>(obj: T): T {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, v]) => v !== undefined),
+  ) as T;
+}

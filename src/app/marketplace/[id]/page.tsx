@@ -162,6 +162,12 @@ export default async function ListingDetailPage({
               {listing.location}, {listing.province}
             </div>
             <div className="mt-4 space-y-2">
+              <Link
+                href={`/finance?listing=${listing.id}`}
+                className="btn-primary w-full justify-center"
+              >
+                Apply for finance pre-approval
+              </Link>
               {listing.ownerWhatsapp && (
                 <a
                   href={`https://wa.me/${listing.ownerWhatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
@@ -169,7 +175,7 @@ export default async function ListingDetailPage({
                   )}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-primary w-full justify-center"
+                  className="btn-outline w-full justify-center"
                 >
                   Message on WhatsApp
                 </a>
