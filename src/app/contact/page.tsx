@@ -20,15 +20,15 @@ const CHANNELS = [
   },
   {
     label: "Instagram",
-    detail: "@cartorquesa",
-    href: "https://www.instagram.com/cartorquesa",
+    detail: "@car_torque_za",
+    href: "https://www.instagram.com/car_torque_za/",
     blurb: "Behind-the-scenes, BTS clips, and stories from the road.",
   },
   {
-    label: "X / Twitter",
-    detail: "@CarTorqueSA",
-    href: "https://x.com/CarTorqueSA",
-    blurb: "Quick takes and motoring news in real time.",
+    label: "Facebook",
+    detail: "Car Torque",
+    href: "https://www.facebook.com/profile.php?id=100076080243370",
+    blurb: "New stock drops, deals, and community chat.",
   },
 ];
 

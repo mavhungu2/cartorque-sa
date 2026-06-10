@@ -25,9 +25,8 @@ export default function Footer() {
           <div className="font-semibold mb-3 text-[color:var(--accent)] uppercase tracking-wider text-xs">Follow</div>
           <ul className="space-y-2 text-white/80">
             <li><a href="https://www.youtube.com/@CarTorqueSA" target="_blank" rel="noreferrer" className="hover:text-[color:var(--accent)]">YouTube</a></li>
-            <li><a href="https://www.instagram.com/cartorquesa" target="_blank" rel="noreferrer" className="hover:text-[color:var(--accent)]">Instagram</a></li>
-            <li><a href="https://x.com/CarTorqueSA" target="_blank" rel="noreferrer" className="hover:text-[color:var(--accent)]">X (Twitter)</a></li>
-            <li><a href="https://www.facebook.com/cartorquesa" target="_blank" rel="noreferrer" className="hover:text-[color:var(--accent)]">Facebook</a></li>
+            <li><a href="https://www.instagram.com/car_torque_za/" target="_blank" rel="noreferrer" className="hover:text-[color:var(--accent)]">Instagram</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=100076080243370" target="_blank" rel="noreferrer" className="hover:text-[color:var(--accent)]">Facebook</a></li>
           </ul>
         </div>
       </div>
