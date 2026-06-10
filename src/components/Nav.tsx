@@ -28,14 +28,9 @@ export default function Nav() {
             </Link>
           ))}
         </nav>
-        <a
-          href="https://www.youtube.com/@CarTorqueSA?sub_confirmation=1"
-          target="_blank"
-          rel="noreferrer"
-          className="btn-primary text-sm"
-        >
-          Subscribe
-        </a>
+        <Link href="/sell" className="btn-primary text-sm">
+          + Sell my car
+        </Link>
       </div>
     </header>
   );

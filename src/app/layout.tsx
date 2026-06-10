@@ -8,9 +8,9 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Car Torque SA — Honest South African Car Reviews",
+  title: "Car Torque SA — Honest South African Car Marketplace",
   description:
-    "Honest, in-depth car reviews from South Africa. Renault, Kia, Megane RS and more — by Car Torque SA on YouTube.",
+    "Buy & sell cars in South Africa. Every listing screened by the Car Torque team — and selected cars get a full video review on the channel.",
   icons: { icon: "/logo.png" },
 };
 
