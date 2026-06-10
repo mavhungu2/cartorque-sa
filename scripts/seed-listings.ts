@@ -1,7 +1,10 @@
 // Seed Firestore with the mock listings.
-// Run with: npx tsx --env-file=.env.local scripts/seed-listings.ts
 //
-// Idempotent — re-running upserts by id, so no duplicates.
+// ⚠ PRODUCTION HAS REAL LISTINGS. Running this re-inserts the demo cars onto
+// the live site. It is guarded: set FORCE_SEED=1 to run intentionally, and
+// run scripts/remove-mock-listings.ts to clean up afterwards.
+//
+// Run with: FORCE_SEED=1 npx tsx --env-file=.env.local scripts/seed-listings.ts
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { MOCK_LISTINGS } from "../src/lib/mock-listings";
@@ -12,6 +15,15 @@ const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
 if (!projectId || !clientEmail || !privateKey) {
   console.error("FIREBASE_* env vars not set. Aborting.");
+  process.exit(1);
+}
+
+if (process.env.FORCE_SEED !== "1") {
+  console.error(
+    "Refusing to seed demo cars into a database with real listings.\n" +
+      "If you really want this, run with FORCE_SEED=1 and clean up with\n" +
+      "scripts/remove-mock-listings.ts afterwards.",
+  );
   process.exit(1);
 }
 

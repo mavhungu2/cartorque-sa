@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
+  // Cap how long CDN edges may serve a stale ISR page while revalidating.
+  // Default is ~1 year of stale-while-revalidate, which let deleted listings
+  // linger on cached copies of the home page. 5 minutes is plenty.
+  expireTime: 300,
   // Tell Turbopack this directory is the workspace root, suppressing the
   // multi-lockfile inference warning caused by a sibling package-lock.json.
   turbopack: {
