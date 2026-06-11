@@ -18,6 +18,7 @@ export default function Footer() {
             <li><Link href="/blog" className="hover:text-[color:var(--accent)]">Blog</Link></li>
             <li><Link href="/about" className="hover:text-[color:var(--accent)]">About</Link></li>
             <li><Link href="/contact" className="hover:text-[color:var(--accent)]">Contact</Link></li>
+            <li><Link href="/privacy" className="hover:text-[color:var(--accent)]">Privacy Policy</Link></li>
           </ul>
         </div>
         <div>
