@@ -1,0 +1,36 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "node": "22.14.0",
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://cartorque-sa--cartorque-sa.us-east4.hosted.app/api/v1"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "node": "22.14.0",
+      "android": { "buildType": "apk" },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://cartorque-sa--cartorque-sa.us-east4.hosted.app/api/v1"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "channel": "production",
+      "node": "22.14.0",
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://cartorque-sa--cartorque-sa.us-east4.hosted.app/api/v1"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

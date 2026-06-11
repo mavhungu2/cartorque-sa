@@ -1,0 +1,18 @@
+# Keep the web app's artifacts out of EAS build archives.
+# Leading slashes anchor to repo root so mobile/* equivalents are unaffected.
+node_modules/
+/.next/
+/.git/
+/public/
+/scripts/
+/src/
+*.md
+/firestore.rules
+/apphosting.yaml
+firebase-debug.log*
+/package.json
+/package-lock.json
+/next.config.ts
+/tsconfig.json
+/eslint.config.mjs
+/postcss.config.mjs
